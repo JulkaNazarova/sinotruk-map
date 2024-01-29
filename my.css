@@ -1,0 +1,341 @@
+@font-face {
+    font-family: 'Gilroy-Rg';
+    src: url('./fonts/gilroy-regular.eot');
+    src: url('./fonts/gilroy-regular.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/gilroy-regular.woff2') format('woff2'),
+    url('./fonts/gilroy-regular.woff') format('woff'),
+    url('./fonts/gilroy-regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gilroy-Md';
+    src: url('./fonts/gilroy-medium.eot');
+    src: url('./fonts/gilroy-medium.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/gilroy-medium.woff2') format('woff2'),
+    url('./fonts/gilroy-medium.woff') format('woff'),
+    url('./fonts/gilroy-medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gilroy-Bd';
+    src: url('./fonts/gilroy-bold.eot');
+    src: url('./fonts/gilroy-bold.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/gilroy-bold.woff2') format('woff2'),
+    url('./fonts/gilroy-bold.woff') format('woff'),
+    url('./fonts/gilroy-bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: "Gilroy-Rg", Arial, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #000000;
+    overflow-x: hidden;
+    font-size: 24px;
+    text-rendering: auto;
+    line-height: normal;
+    -webkit-font-smoothing: subpixel-antialiased !important;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    outline: none !important;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4,
+.h1, .h2, .h3, .h4{
+    margin: 0;
+    padding: 0;
+}
+
+
+ul, li{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+p{
+    margin: 0;
+}
+
+button, a, input {
+    outline: none;
+
+}
+
+button:focus,
+button:visited,
+a:focus,
+a:visited,
+input:focus,
+input:visited {
+  text-decoration: none;
+  outline: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: inherit;
+ }
+
+.container{
+    width: 100%;
+    max-width: 1872px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.header{
+    background: #004975;
+    padding: 21px 0;
+}
+
+.h1{
+    font-family: "Gilroy-Bd";
+    font-size: 40px;
+    text-transform: uppercase;
+    margin-bottom: 29px;
+}
+
+.wrapper{
+    padding: 33px 0;
+}
+
+.map__wrap{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    gap: 20px;
+}
+
+
+
+
+.map__list{
+    /*width: 20%;*/
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #004975;
+    background: #FFF;
+    box-shadow: 0px 0px 8px 0px rgba(0, 73, 117, 0.25);
+
+}
+
+.map__search{
+    padding: 28px;
+    border-bottom: 1px solid #A3A3A3;
+}
+
+
+.map__search input{
+    width: 100%;
+    padding: 0 16px;
+    font-family: "Gilroy-Md";
+    font-size: 16px;
+    height: 40px;
+    border: 1px solid #A3A3A3;
+    border-radius: 6px;
+}
+
+.map__items{
+    max-height: 600px;
+}
+
+.map__items{
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #004975 #f9f9fd;
+}
+
+.map__items::-webkit-scrollbar {
+    width: 8px;
+    background-color: #f9f9fd;
+}
+
+.map__items::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #004975;
+}
+
+.map__items::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    background-color: #f9f9fd;
+}
+
+
+.map__item{
+    padding: 14px 28px;
+    border-bottom: 1px solid #A3A3A3;
+}
+
+.map__city{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    font-family: "Gilroy-Md";
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.map__city:after{
+    content:"";
+    background-image: url("./img/arrow.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 16px;
+    min-width: 16px;
+    height: 16px;
+    transition: 0.3s;
+}
+
+.map__city.active:after{
+    transform: rotate(180deg);
+}
+
+.map__dealers {
+    display: none;
+    gap: 15px;
+    padding: 20px 10px;
+}
+
+.map__dealers.active {
+    display: grid;
+}
+
+.map__dealer-item{
+    cursor: pointer;
+}
+
+.dealer-title{
+    text-decoration: underline;
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.dealer-adress{
+    display: block;
+    color: #A3A3A3;
+    font-style: italic;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+#itemsList {
+    list-style: none;
+    padding: 0;
+}
+
+.map{
+    /*width: 80%;*/
+}
+
+li span{
+    display: block;
+}
+
+li span.adress{
+    padding-left: 20px;
+}
+
+@media (max-width: 1600px) {    /* стили для md-устройств */
+    .map__wrap{
+        grid-template-columns: 1fr 3fr;
+    }
+}
+
+@media (max-width: 1300px) {    /* стили для md-устройств */
+    .map__wrap{
+        grid-template-columns: 1fr 2fr;
+    }
+}
+
+@media (max-width: 991px) {    /* стили для md-устройств */
+    .map__wrap{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+@media (max-width: 767px) {    /* стили для xs-устройств */
+    .map__wrap{
+        grid-template-columns: 1fr;
+    }
+
+    .map__items{
+        max-height: 260px;
+    }
+
+    .map{
+        aspect-ratio: 1/1;
+    }
+
+    .h1 {
+        font-size: 24px;
+        margin-bottom: 14px;
+    }
+
+    .map__city{
+        font-size: 10px;
+    }
+
+    .map__city::after {
+        width: 12px;
+        min-width: 12px;
+        height: 12px;
+    }
+
+    .map__search{
+        padding: 16px 20px;
+    }
+
+    .map__search input{
+        border-radius: 4px;
+        font-size: 12px;
+        height: 27px;
+        padding: 0 10px;
+    }
+
+    .map__item{
+        padding: 10px 20px;
+    }
+
+    .dealer-title {
+        font-size: 10px;
+    }
+
+    .dealer-adress{
+        font-size: 10px;
+    }
+
+    .header-logo{
+        width: 156px;
+    }
+
+    .header{
+        padding: 12px 0;
+    }
+
+    .wrapper
+    {
+        padding: 14px 0;
+    }
+
+}

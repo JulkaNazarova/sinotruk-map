@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Document</title>
+    <link rel="stylesheet" href="my.css">
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=a6103311-6c6c-493c-b380-77eaffecf6d7&lang=ru_RU"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <img class="header-logo" src="./img/sitrak-logo.png" alt="">
+        </div>
+    </header>
+    <div class="wrapper">
+        <main>
+            <div class="container">
+                <h1 class="h1">Карта дилеров</h1>
+                <div class="map__wrap">
+                    <div class="map__list">
+                        <div class="map__search">
+                            <input type="text"  id="input" placeholder="Поиск по названию дилера">
+                        </div>
+                        <div class="map__items">
+                            <div class="map__items-inner">
+                                <ul>
+                                    <li class="map__item">
+                                        <div class="map__city" onclick="toggleDealers(this)">Москва</div>
+                                        <div class="map__dealers">
+                                            <div class="map__dealer-item">
+                                                <span class="dealer-title">ООО «ААА Траксервис»</span>
+                                                <span class="dealer-adress">МКАД, ул. Василия Петушкова, д.3, стр.1</span>
+                                            </div>
+                                            <div class="map__dealer-item">
+                                                <span class="dealer-title">ООО "МТБР"</span>
+                                                <span class="dealer-adress">108824, г. Москва, Рязановское с.п., Симферопольское шоссе, д.22, стр.9</span>
+                                            </div>
+                                            <div class="map__dealer-item">
+                                                <span class="dealer-title">ООО "ЕвроТракСервис"</span>
+                                                <span class="dealer-adress">Дмитровское ш., д. 163</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="map__item">
+                                        <div class="map__city" onclick="toggleDealers(this)">Воронеж</div>
+                                        <div class="map__dealers">
+                                            <div class="map__dealer-item">
+                                                <span class="dealer-title">Сканеж-Воронеж</span>
+                                                <span class="dealer-adress">Воронежская область, Рамонский район, территория Промышленная, улица 6-я Промышленная зона, 7, стр. 1</span>
+                                            </div>
+                                            <div class="map__dealer-item">
+                                                <span class="dealer-title">ООО «РБА-МБ»</span>
+                                                <span class="dealer-adress">Воронежская область, Рамонский район, 200 м по направлению на восток от ориентира 485 км + 300 м влево от автодороги М4 «Дон-1»</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <ul id="itemsList" >
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="map" id="map"></div>
+
+                </div>
+            </div>
+
+            <template id="row">
+                <li>
+                    <span class="city"></span>
+                    <span class="adress"></span>
+                </li>
+            </template>
+        </main>
+
+    </div>
+
+    <script src="my.js"></script>
+    <script src="map.js"></script>
+    
+   
+</body>
+</html>
