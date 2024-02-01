@@ -17,7 +17,7 @@ function  init() {
 
             //верстка для балуна
             let balloonContent=''
-            balloonContent+=`<div>${point.company}<br>${point.adress}<br>${point.phone}</div>`
+            balloonContent+=`<div>${point.company}<br>${point.adress}<br><a href="tel:${point.phone}">${point.phone}</a></div>`
 
             //добавляем точку
             myMap.geoObjects
