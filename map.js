@@ -11,27 +11,43 @@ function  init() {
             searchControlProvider: 'yandex#search'
         })
 
-    items.forEach(item => 
-        {   
+    towns.forEach(town =>
+        {
+          town.points.forEach(point=>{
+
             //верстка для балуна
             let balloonContent=''
-            balloonContent+=`<b>${item.city}</b><hr>`
+            balloonContent+=`<div>${point.company}<br>${point.adress}<br>${point.phone}</div>`
 
-            let phones=''
-            item.phones.forEach(phone=>{
-                phones+=`<a href='tel:${phone}'>${phone}</a><br>`
-            })
-            balloonContent+=phones
-            
-        //добавляем точку    
-        myMap.geoObjects
-        .add(new ymaps.Placemark(item.coords, {
-            balloonContent: balloonContent
-        }, {
-            preset: 'islands#redSportIcon'
-        })
-        )
-        
+            //добавляем точку
+            myMap.geoObjects
+              .add(new ymaps.Placemark(point.coords, {
+                  balloonContent: balloonContent
+                }, {
+                  preset: 'islands#redSportIcon'
+                })
+              )
+
+          })
+            // //верстка для балуна
+            // let balloonContent=''
+            // balloonContent+=`<b>${town.city}</b><hr>`
+
+            // let phones=''
+            // item.points.phone.forEach(phone=>{
+            //     phones+=`<a href='tel:${item.points.phone}'>${item.points.phone}</a><br>`
+            // })
+            // balloonContent+=phones
+
+        // //добавляем точку
+        // myMap.geoObjects
+        // .add(new ymaps.Placemark(town.points.coords, {
+        //     balloonContent: balloonContent
+        // }, {
+        //     preset: 'islands#redSportIcon'
+        // })
+        // )
+
     });
 }
 
@@ -41,11 +57,11 @@ function showFilial(x,y) {
     myMap.setCenter([x,y])
     myMap.setZoom(16, {duration: 1000});
     */
-    
-    
+
+
     myMap.setZoom(5, {duration: 2000});
     //////
-    
+
     myAction = new ymaps.map.action.Single({
         center: [x, y],
         zoom: 15,
@@ -58,8 +74,8 @@ function showFilial(x,y) {
 
 
     /////
-    
+
     console.log(x,y)
-    
-    
+
+
 }

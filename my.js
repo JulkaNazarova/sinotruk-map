@@ -7,115 +7,119 @@ function toggleDealers(cityElement) {
 
 console.log('it work')
 const input=document.querySelector("#input")
-const itemsList=document.querySelector("#itemsList")
-let template = document.querySelector('#row')
+const pointsList=document.querySelector("#itemsList")
 
 let part='';
-const items=[
-    {
-        city: "Москва",
-        adress:"ростовская улица",
-        phones: [
-            1234566,
-            45678909,
-            23424243
-        ],
-        coords:[55.755864,37.617698]
-
-
-    },
-    {
-        city: "Ростов",
-        adress:"другая улица",
-        phones: [
-            1234566,
-            45678909
-        ],
-        coords:[ 57.185870,39.414526]
-    },
-    {
-        city: "Сочи",
-        adress:"адрес в сочи",
-        phones: [
-            1234566,
-            45678909
-        ],
-        coords:[43.585472,39.723098]
-    },
-    {
-        city: "Ростов-на-Дону",
-        adress:"ул Ленина 23",
-        phones: [
-            1234566,
-            45678909
-        ],
-        coords:[47.222078,39.720358]
-    },
-    {
-        city: "Петрозаводск",
-        adress:"Солнечная",
-        phones: [
-            1234566,
-            45678909
-        ],
-        coords:[61.785021,34.346878]
-    },
-]
-
 
 
 input.addEventListener('input',(event)=>{
-   if(event.target.value.length>=2){
+   if(event.target.value.length>=3){
     part=event.target.value;
     makeNewItems(part)
    } else {
-    updateList(items)
+    updateList(towns)
    }
 })
 
 
-//отрисовывает
-const updateList=(items)=>{
-    itemsList.innerHTML=''
-    items.forEach( item=>{
-     /* let clone = template.content.cloneNode(true)
-      let li = clone.querySelectorAll('li span.city')
-      let span = clone.querySelectorAll('li span.adress')
-      li[0].textContent = item.city
-      span[0].textContent = item.adress
-      itemsList.appendChild(clone)
-      console.log(span)*/
-      
-      let phonesHtml=''
-        item.phones.forEach(phone=>{
-            phonesHtml+=`${phone}<br>`
-        })
+//отрисовывает функция
+const updateList=(towns)=>{
+  pointsList.innerHTML=''
+  towns.forEach(town =>{
 
-        itemsList.innerHTML+=`
-        <li onclick='showFilial(${item.coords})'>${item.city}
-            <br>${item.adress}
-            <br>${phonesHtml}
+    let townHtml=''
+    town.points.forEach(elem=>{
+      townHtml+=`
+       <div class="map__dealer-item" onclick='showFilial(${elem.coords})'>
+            <span class="dealer-title">${elem.company}</span>
+            <span class="dealer-adress">${elem.adress}</span>
+        </div>
+      `
+    })
+
+    pointsList.innerHTML+=`
+        <li class="map__item">
+            <div class="map__city" onclick="toggleDealers(this)">${town.city}</div>
+            <div class="map__dealers">
+                ${townHtml}
+            </div>
         </li>
-        <hr>
         `
-    });
+  });
 }
+
+//первыая отрисовка
+updateList(towns)
+
+// //отрисовывает (старое)
+// const updateList=(points)=>{
+//     itemsList.innerHTML=''
+//     points.forEach( item=>{
+//
+//       let phonesHtml=''
+//         item.phones.forEach(phone=>{
+//             phonesHtml+=`${phone}<br>`
+//         })
+//
+//         itemsList.innerHTML+=`
+//         <li onclick='showFilial(${item.coords})'>${item.city}
+//             <br>${item.adress}
+//             <br>${phonesHtml}
+//         </li>
+//         <hr>
+//         `
+//     });
+// }
 
 //делаем новый массив
 const makeNewItems=(string)=>{
     let newItems=[];
-    items.forEach(item=>{
+    towns.forEach(town=>{
+      // if(
+      //   town.city.toLowerCase().includes(string.toLowerCase())
+      // ) {
+      //
+      //   //newItems.push(town)
+      //
+      // }
+
+      let newItemsInner=[];
+      town.points.forEach(point=>{
         if(
-            item.city.toLowerCase().includes(string.toLowerCase()) ||
-            item.adress.toLowerCase().includes(string.toLowerCase())                
+          point.company.toLowerCase().includes(string.toLowerCase()) ||
+          point.adress.toLowerCase().includes(string.toLowerCase())
+
         ) {
-            newItems.push(item)
-        } 
+          newItems.push(town)
+        }
+      })
+
+
+
+      // town.points.forEach(point=>{
+      //     if(
+      //       point.company.toLowerCase().includes(string.toLowerCase()) ||
+      //       point.adress.toLowerCase().includes(string.toLowerCase())
+      //
+      //     ) {
+      //       newItems.push(town)
+      //     }
+      // })
+
+        // if(
+        //   town.city.toLowerCase().includes(string.toLowerCase())
+        //     //||
+        //     //item.adress.toLowerCase().includes(string.toLowerCase())
+        // ) {
+        //     newItems.push(town)
+        // }
+
+
     })
   updateList(newItems)
+
 }
 
-//первыая отрисовка
-updateList(items)
+
 
 
