@@ -24,7 +24,7 @@ function  init() {
               .add(new ymaps.Placemark(point.coords, {
                   balloonContent: balloonContent
                 }, {
-                  preset: 'islands#redSportIcon'
+                  preset: 'islands#blueDeliveryIcon'
                 })
               )
 
