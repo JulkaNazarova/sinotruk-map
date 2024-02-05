@@ -13,7 +13,7 @@ let part='';
 
 
 input.addEventListener('input',(event)=>{
-   if(event.target.value.length>=3){
+   if(event.target.value.length>=5){
     part=event.target.value;
     makeNewItems(part)
    } else {
@@ -54,6 +54,7 @@ updateList(towns)
 
 //делаем новый массив после поиска
 const makeNewItems=(string)=>{
+
     //сначала перебираем города
     let newItems=[];
     towns.forEach(town=>{
@@ -63,6 +64,7 @@ const makeNewItems=(string)=>{
         newItems.push(town)
       }
       else {
+
         //если среди городов не нашли, то перебираем названия и адреса компаний
         town.points.forEach(point=> {
           let newItems2 = [];
@@ -70,12 +72,21 @@ const makeNewItems=(string)=>{
             point.company.toLowerCase().includes(string.toLowerCase()) ||
             point.adress.toLowerCase().includes(string.toLowerCase())
           ) {
-            newItems2.push({
-              city: town.city,
-              points: []
-            })
+            let city = '';
+            console.log("town.city: " + town.city)
+            console.log("city: " + city)
+            if(town.city!=city) {
+              newItems2.push({
+                city: town.city,
+                points: []
+              })
+              city=town.city
+              console.log("city после сравнения: " + city)
+              console.log(newItems2)
+            }
+
             newItems2.forEach(newPoint=> {
-              if (newPoint.city == town.city) {
+              if (newPoint.city == city) {
                 newPoint.points.push({
                   company: point.company,
                   adress: point.adress,
@@ -84,8 +95,10 @@ const makeNewItems=(string)=>{
                 })
               }
             })
+
           }
-          console.log(newItems2);
+          //console.log(newItems2);
+
           //объединяем два массива
           newItems = newItems.concat(newItems2);
 
@@ -133,7 +146,7 @@ const makeNewItems=(string)=>{
 
     })
   updateList(newItems)
-  //updateList(newItemsInner)
+
 
 }
 
