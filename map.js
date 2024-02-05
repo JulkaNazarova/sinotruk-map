@@ -24,7 +24,11 @@ function  init() {
               .add(new ymaps.Placemark(point.coords, {
                   balloonContent: balloonContent
                 }, {
-                  preset: 'islands#blueDeliveryIcon'
+                  preset: 'islands#blueDeliveryIcon',
+                  balloonOffset: [3, -40],
+                  balloonPanelMaxMapArea: 0
+                  //hideIconOnBalloonOpen: false,
+
                 })
               )
 

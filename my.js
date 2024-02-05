@@ -48,75 +48,92 @@ const updateList=(towns)=>{
   });
 }
 
-//первыая отрисовка
+//первая отрисовка
 updateList(towns)
 
-// //отрисовывает (старое)
-// const updateList=(points)=>{
-//     itemsList.innerHTML=''
-//     points.forEach( item=>{
-//
-//       let phonesHtml=''
-//         item.phones.forEach(phone=>{
-//             phonesHtml+=`${phone}<br>`
-//         })
-//
-//         itemsList.innerHTML+=`
-//         <li onclick='showFilial(${item.coords})'>${item.city}
-//             <br>${item.adress}
-//             <br>${phonesHtml}
-//         </li>
-//         <hr>
-//         `
-//     });
-// }
 
-//делаем новый массив
+//делаем новый массив после поиска
 const makeNewItems=(string)=>{
+    //сначала перебираем города
     let newItems=[];
     towns.forEach(town=>{
-      // if(
-      //   town.city.toLowerCase().includes(string.toLowerCase())
-      // ) {
-      //
-      //   //newItems.push(town)
-      //
-      // }
+      if(
+        town.city.toLowerCase().includes(string.toLowerCase())
+      ) {
+        newItems.push(town)
+      }
+      else {
+        //если среди городов не нашли, то перебираем названия и адреса компаний
+        town.points.forEach(point=> {
+          let newItems2 = [];
+          if (
+            point.company.toLowerCase().includes(string.toLowerCase()) ||
+            point.adress.toLowerCase().includes(string.toLowerCase())
+          ) {
+            newItems2.push({
+              city: town.city,
+              points: []
+            })
+            newItems2.forEach(newPoint=> {
+              if (newPoint.city == town.city) {
+                newPoint.points.push({
+                  company: point.company,
+                  adress: point.adress,
+                  phone: point.phone,
+                  coords: point.coords
+                })
+              }
+            })
+          }
+          console.log(newItems2);
+          //объединяем два массива
+          newItems = newItems.concat(newItems2);
 
-      let newItemsInner=[];
-      town.points.forEach(point=>{
-        if(
-          point.company.toLowerCase().includes(string.toLowerCase()) ||
-          point.adress.toLowerCase().includes(string.toLowerCase())
+        })
 
-        ) {
-          newItems.push(town)
-        }
-      })
+      }
 
 
-
+      // let newItems2=[];
       // town.points.forEach(point=>{
-      //     if(
-      //       point.company.toLowerCase().includes(string.toLowerCase()) ||
-      //       point.adress.toLowerCase().includes(string.toLowerCase())
+      //   if(
+      //     point.company.toLowerCase().includes(string.toLowerCase()) ||
+      //     point.adress.toLowerCase().includes(string.toLowerCase())
+      //   ) {
       //
-      //     ) {
-      //       newItems.push(town)
-      //     }
+      //     towns.forEach(newItem=>{
+      //       if(newItem.city!=point.city){
+      //
+      //         //массив для новой точки
+      //         let newPoint2=[],
+      //         newPoint2.push({
+      //           company: point.company,
+      //           adress:point.adress,
+      //           phone: point.phone,
+      //           //coords: point.coords
+      //         })
+      //        console.log(newPoint2)
+      //
+      //         // newItems2.push({
+      //         //   city: town.city,
+      //         //   points: []
+      //         // })
+      //
+      //       }
+      //     })
+      //
+      //
+      //   }
+      //   // console.log(newItems2)
+      //   // newItems = newItems.concat(newItems2);
+      //
       // })
 
-        // if(
-        //   town.city.toLowerCase().includes(string.toLowerCase())
-        //     //||
-        //     //item.adress.toLowerCase().includes(string.toLowerCase())
-        // ) {
-        //     newItems.push(town)
-        // }
 
 
     })
   updateList(newItems)
+  //updateList(newItemsInner)
 
 }
 
