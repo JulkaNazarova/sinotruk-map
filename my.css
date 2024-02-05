@@ -280,7 +280,11 @@ li span.adress{
     }
 
     .map__items{
-        max-height: 260px;
+        max-height: 170px;
+    }
+
+    .map__dealers{
+        padding: 10px;
     }
 
     .map{
